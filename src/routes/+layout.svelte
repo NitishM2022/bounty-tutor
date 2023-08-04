@@ -21,5 +21,15 @@
   });
 </script>
 
-<h1><a href="/" class="btn btn-primary">Home</a></h1>
-<slot />
+<main>
+  <a href="/" class="btn btn-primary">Home</a> 
+  {#if data.session}
+    <a href="/countries" class="btn btn-secondary">Countries</a>
+      <a href="/logout">Logout</a>
+  {:else}
+    <a href="/login" class="btn btn-primary">Login</a>
+    <a href="/signup" class="btn btn-secondary">Sign Up</a>
+  {/if}
+</main>
+
+<slot/>

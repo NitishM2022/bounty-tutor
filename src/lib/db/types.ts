@@ -24,6 +24,46 @@ export interface Database {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          date_of_birth: string | null
+          first_name: string | null
+          id: string
+          is_tutor: boolean | null
+          last_name: string | null
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          date_of_birth?: string | null
+          first_name?: string | null
+          id: string
+          is_tutor?: boolean | null
+          last_name?: string | null
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          date_of_birth?: string | null
+          first_name?: string | null
+          id?: string
+          is_tutor?: boolean | null
+          last_name?: string | null
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -3,9 +3,10 @@ import type { Actions } from "./$types";
 import { fail, redirect } from "@sveltejs/kit";
 
 
-export const load: PageLoad = async ({ locals: {supabase, getSession}}) => {
-    const session = await getSession
+export const load: PageLoad = async ({ parent }) => {
+    const {session} = await parent()
     if(session){
+        console.log("Logged in, redirecting you to home page")
         throw redirect(303, '/')
     }
 };
@@ -13,6 +14,11 @@ export const load: PageLoad = async ({ locals: {supabase, getSession}}) => {
 export const actions: Actions = {
     signup:async ({request, locals}) => {
         const formData = await request.formData();
+        const firstname = formData.get('firstname')
+        const lastname = formData.get('lastname')
+        const dob = formData.get('dob')
+        // const username = formData.get('username')
+        // const avatar_url = formData.get('avatar_url')
         const email = formData.get('email');
         const password = formData.get('password')
 
@@ -21,6 +27,11 @@ export const actions: Actions = {
             password: password as string,
             options: {
                 emailRedirectTo: `../auth/callback`,
+                data: {
+                    first_name: firstname,
+                    last_name: lastname,
+                    date_of_birth: dob,
+                },
             },
         })
 
