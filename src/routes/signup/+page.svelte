@@ -1,13 +1,20 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
+	import { goto } from "$app/navigation";
 	import type { SubmitFunction } from "@sveltejs/kit";
 
 	const register: SubmitFunction = ({form, data, action, cancel}) => {
 		return async({result, update}) => {
-			if(result.type = 'failure'){
-				alert("Please correctly fill out all fields");
+			switch(result.type){
+				case 'failure':
+					alert("Please correctly fill out all fields")
+					break
+				case 'success':
+					goto('/')
+					break
+				default:
+					await update();
 			}
-			await update();
 		}
 	}
 </script>

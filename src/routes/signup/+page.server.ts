@@ -1,6 +1,6 @@
 import { AuthApiError } from "@supabase/supabase-js";
 import type { Actions, PageServerLoad } from "./$types";
-import { fail, redirect } from "@sveltejs/kit";
+import { error, fail, redirect } from "@sveltejs/kit";
 import { supabase } from "$lib/server/supabase";
 
 export const load: PageServerLoad = async ({ parent }) => {
@@ -22,9 +22,6 @@ export const actions: Actions = {
 
         const dateInputValue = formData.get('dob'); // '1999-01-01'
         const [year, month, day] = dateInputValue.split('-');
-        console.log(year)
-        console.log(month)
-        console.log(day)
 
         const dob = new Date(
             parseInt(year, 10),
@@ -50,21 +47,14 @@ export const actions: Actions = {
             },
         })
 
-        console.log("NOT INVISIBLE ERROR")
-        console.log(err)
-        console.log("ERROR ENDED")
         if(err){
             console.log(err)
             if(err instanceof AuthApiError && err.status == 400){
-                return fail(400, {
-                    error: 'Invalid email or password'
-                })
+                return fail(400, {message: 'Invalid email or password'})
             }
-            return fail(500, {
-                error: 'Server error. Plase try again later.'
-            })
+            return fail(500, {message: 'Server error. Plase try again later.'})
+        }else{
+            return {success: true}
         }
-
-        throw redirect(303, "/")
     }
 };
