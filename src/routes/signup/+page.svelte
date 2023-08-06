@@ -4,7 +4,7 @@
 
 	const register: SubmitFunction = ({form, data, action, cancel}) => {
 		return async({result, update}) => {
-			if(result.type = 'invalid'){
+			if(result.type = 'failure'){
 				alert("Please correctly fill out all fields");
 			}
 			await update();
@@ -24,11 +24,11 @@
 		<label for="dob">Date of Birth:</label>
 		<input type="date" id="dob" name="dob" /><br>
 
-		<!-- <label for=""> Username </label>
+		<label for=""> Username </label>
 		<input type="text" name="username" /><br>
 
 		<label for=""> Avatar Url </label>
-		<input type="text" name="avatar-url" /><br> -->
+		<input type="text" name="avatar-url" /><br>
 
 		<label for=""> Email </label>
 		<input type="text" name="email" /><br>
