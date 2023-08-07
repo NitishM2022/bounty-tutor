@@ -24,8 +24,6 @@ export const load = async ({ fetch, data, depends }) => {
     .select('avatar_url, first_name, last_name')
     .eq('id', session?.user.id)
 
-  console.log(profile)
-
   return { 
     supabase, 
     session,
