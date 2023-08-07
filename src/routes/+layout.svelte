@@ -13,6 +13,7 @@
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, _session) => {
       if (_session?.expires_at !== session?.expires_at) {
+        console.log("auth state changed")
         invalidate('supabase:auth');
       }
     });
@@ -25,7 +26,7 @@
 <nav>
   <a href="/" class="btn btn-primary">Home</a> 
   {#if data.session}
-    <a href="/countries" class="btn btn-secondary">Countries</a>
+    <a href="/tutor" class="btn btn-secondary">Create A Class</a>
     <a href="/logout">Logout</a>
       {#if data.profile}
         <div style="float: right; display: flex; align-items: center;">

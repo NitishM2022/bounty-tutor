@@ -15,7 +15,7 @@
     </label>
   </form>
     
-  {#if data.countries != null}
+  {#if data.countries}
     {#if data.countries.length > 0}
       <h2>Country List</h2>
         {#each data.countries as {id, full_name}, index}
