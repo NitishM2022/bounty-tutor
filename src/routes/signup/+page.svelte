@@ -10,6 +10,7 @@
 					alert("Please correctly fill out all fields")
 					break
 				case 'success':
+					alert("Please verify your email")
 					goto('/')
 					break
 				default:

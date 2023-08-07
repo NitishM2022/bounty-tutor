@@ -18,11 +18,17 @@ export const load = async ({ fetch, data, depends }) => {
     data: { session }, error
   } = await supabase.auth.getSession()
 
+  let { data: profile, error: err} = await
+  supabase
+    .from('profiles')
+    .select('avatar_url, first_name, last_name')
+    .eq('id', session?.user.id)
 
-
+  console.log(profile)
 
   return { 
     supabase, 
     session,
+    profile,
   }
 }
