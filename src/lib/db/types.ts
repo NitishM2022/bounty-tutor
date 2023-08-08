@@ -12,20 +12,26 @@ export interface Database {
       classes: {
         Row: {
           creator_id: string | null
+          current_students: number | null
           description: string | null
           id: string
+          max_students: number | null
           title: string | null
         }
         Insert: {
           creator_id?: string | null
+          current_students?: number | null
           description?: string | null
           id?: string
+          max_students?: number | null
           title?: string | null
         }
         Update: {
           creator_id?: string | null
+          current_students?: number | null
           description?: string | null
           id?: string
+          max_students?: number | null
           title?: string | null
         }
         Relationships: [
