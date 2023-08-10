@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer components {
+	.nav-link {
+		@apply font-sans text-center text-lg text-gray-600 hover:text-purple-600;
+	}
+}
